@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Task Management App</string>
     <string name="appName">Task Buddy</string>
+    <string name="create">Create</string>
+    <string name="deadline">Deadline</string>
+    <string name="end_time">End Time</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="title_for_your_task">title for your task</string>
+    <string name="des">description...</string>
+    <string name="select_date_and_time">select date and time</string>
+    <string name="create_a_new_task">Create a New Task</string>
 </resources>

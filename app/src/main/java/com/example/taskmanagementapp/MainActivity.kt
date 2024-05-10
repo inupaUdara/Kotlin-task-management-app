@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         // Post a delayed action on the handler
         handler.postDelayed({
             //// Create an intent to start the StartActivity
-            val intent = Intent(this@MainActivity, HomeActivity::class.java)
+            val intent = Intent(this@MainActivity, AddTask::class.java)
             startActivity(intent)
             finish()
         }, 2000)

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="editText">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/ascent2</item>
+        <item name="android:textColorHint">@color/hintColor</item>
+        <item name="android:elevation">10dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+    </style>
+
+
+    <style name="textLabel">
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textColor">@color/ascent</item>
+    </style>
+
+    <style name="btn">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textColor">@color/ascent</item>
+    </style>
+</resources>
