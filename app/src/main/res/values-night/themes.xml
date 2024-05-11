@@ -1,7 +1,33 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.TaskManagementApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <style name="Base.Theme.TaskManagementApp" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/darkBlue</item>
+        <item name="colorPrimaryVariant">@color/darkBlue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/darkBlue</item>
+        <item name="colorSecondaryVariant">@color/darkBlue</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Apply same toolbar style as in the dark theme -->
+        <item name="toolbarStyle">@style/CustomToolbar</item>
     </style>
+
+    <!-- Custom toolbar style -->
+    <style name="CustomToolbar" parent="Widget.AppCompat.Toolbar">
+        <!-- Apply same text appearance style as in the dark theme -->
+        <item name="titleTextAppearance">@style/CustomToolbarTextAppearance</item>
+    </style>
+
+    <!-- Text appearance for the action bar title -->
+    <style name="CustomToolbarTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <!-- Same font styling as in the dark theme -->
+        <item name="fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <!-- Theme for the TaskManagementApp -->
+    <style name="Theme.TaskManagementApp" parent="Base.Theme.TaskManagementApp" />
 </resources>

@@ -26,11 +26,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/create_a_new_task"
                 android:fontFamily="@font/montserrat_bold"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                android:textSize="30dp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_marginTop="38dp"
+                android:layout_marginTop="15dp"
                 android:textAlignment="center"/>
 
             <LinearLayout
@@ -129,7 +128,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/ascent"
+        android:backgroundTint="@color/darkBlue"
         android:fontFamily="@font/montserrat_bold"
         android:padding="10dp"
         android:text="@string/create"

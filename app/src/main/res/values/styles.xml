@@ -2,8 +2,8 @@
 <resources>
     <style name="editText">
         <item name="fontFamily">@font/montserrat_regular</item>
-        <item name="android:textColor">@color/ascent2</item>
-        <item name="android:textColorHint">@color/hintColor</item>
+        <item name="android:textColor">@color/purple</item>
+        <item name="android:textColorHint">@color/gray</item>
         <item name="android:elevation">10dp</item>
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:layout_marginRight">16dp</item>
@@ -15,12 +15,20 @@
         <item name="android:layout_marginLeft">16dp</item>
         <item name="fontFamily">@font/montserrat_regular</item>
         <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:textColor">@color/ascent</item>
+        <item name="android:textColor">@color/darkBlue</item>
     </style>
 
     <style name="btn">
         <item name="fontFamily">@font/montserrat_regular</item>
         <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:textColor">@color/ascent</item>
+        <item name="android:textColor">@color/darkBlue</item>
     </style>
+
+    <style name="CustomToolbarTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <!-- Define your custom font here -->
+        <item name="fontFamily">@font/montserrat_bold</item>
+    </style>
+
+
+
 </resources>

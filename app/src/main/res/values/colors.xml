@@ -2,10 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="textBg">#c1ecfe</color>
     <color name="primary">#eaf3fa</color>
-    <color name="secondary">#c1e3fd</color>
-    <color name="ascent">#1f276f</color>
-    <color name="ascent2">#8b7ffe</color>
-    <color name="hintColor">#363942</color>
+    <color name="lightBlue">#c1e3fd</color>
+    <color name="darkBlue">#1f276f</color>
+    <color name="purple">#8b7ffe</color>
+    <color name="gray">#363942</color>
 </resources>
