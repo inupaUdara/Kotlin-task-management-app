@@ -25,9 +25,17 @@
     </style>
 
     <style name="CustomToolbarTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <!-- Define your custom font here -->
         <item name="fontFamily">@font/montserrat_bold</item>
     </style>
+
+    <style name="CustomAlertDialogStyle" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="android:textAppearance">@style/AlertDialogTitleTextAppearance</item>
+    </style>
+
+    <style name="AlertDialogTitleTextAppearance" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
 
 
 

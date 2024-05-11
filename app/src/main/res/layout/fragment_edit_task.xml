@@ -48,7 +48,7 @@
                         style="@style/textLabel" />
 
                     <EditText
-                        android:id="@+id/taskTitle"
+                        android:id="@+id/updateTaskTitle"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:hint="@string/title_for_your_task"
@@ -75,7 +75,7 @@
                         style="@style/textLabel" />
 
                     <EditText
-                        android:id="@+id/taskDescription"
+                        android:id="@+id/updateTaskDescription"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:hint="@string/des"
@@ -103,7 +103,7 @@
                         android:text="@string/deadline"/>
 
                     <EditText
-                        android:id="@+id/taskDeadline"
+                        android:id="@+id/updateTaskDeadline"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_weight="1"
@@ -126,6 +126,7 @@
         </ScrollView>
 
         <Button
+            android:id="@+id/btnUpdateTask"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
@@ -134,7 +135,7 @@
             android:backgroundTint="@color/darkBlue"
             android:fontFamily="@font/montserrat_bold"
             android:padding="10dp"
-            android:text="@string/create"
+            android:text="@string/update"
             android:textColor="@color/primary"
             android:textSize="16sp"
             android:elevation="20dp"
