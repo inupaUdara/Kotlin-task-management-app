@@ -19,5 +19,6 @@
         <item name="titleTextAppearance">@style/CustomToolbarTextAppearance</item>
     </style>
 
+
     <style name="Theme.TaskManagementApp" parent="Base.Theme.TaskManagementApp" />
 </resources>

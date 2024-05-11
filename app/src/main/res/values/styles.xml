@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="editText">
-        <item name="fontFamily">@font/montserrat_regular</item>
-        <item name="android:textColor">@color/purple</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/darkBlue</item>
         <item name="android:textColorHint">@color/gray</item>
         <item name="android:elevation">10dp</item>
         <item name="android:layout_marginLeft">16dp</item>
@@ -28,15 +28,15 @@
         <item name="fontFamily">@font/montserrat_bold</item>
     </style>
 
-    <style name="CustomAlertDialogStyle" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="android:textAppearance">@style/AlertDialogTitleTextAppearance</item>
+    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <!-- Set text appearance for the title -->
+        <item name="materialAlertDialogTitleTextStyle">@style/TitleTextStyle</item>
+        <!-- Add other style attributes as needed -->
     </style>
 
-    <style name="AlertDialogTitleTextAppearance" parent="TextAppearance.MaterialComponents.Headline6">
+    <style name="TitleTextStyle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
         <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">40sp</item>
     </style>
-
-
-
 
 </resources>

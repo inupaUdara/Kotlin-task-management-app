@@ -75,18 +75,12 @@ class EditTaskFragment : Fragment(R.layout.fragment_edit_task), MenuProvider {
             }else{
                 Toast.makeText(context, "Please enter task title", Toast.LENGTH_SHORT).show()
             }
-
-
         }
-
-
-
     }
 
     private fun deleteTask(){
-        AlertDialog.Builder(requireActivity(), R.style.CustomAlertDialogStyle).apply {
-            setTitle("Delete Task")
-            setMessage("Do you want to delete this task")
+        AlertDialog.Builder(requireActivity(), R.style.AlertDialogTheme).apply {
+            setMessage("Do you want to delete this task?")
             setPositiveButton("Delete"){_,_ ->
                 tasksViewModel.deleteTask(currentTask)
                 Toast.makeText(context, "Task Deleted", Toast.LENGTH_SHORT).show()
