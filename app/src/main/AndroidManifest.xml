@@ -18,7 +18,12 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".HomeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value=""/>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -27,9 +32,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value=""/>
         </activity>
     </application>
 

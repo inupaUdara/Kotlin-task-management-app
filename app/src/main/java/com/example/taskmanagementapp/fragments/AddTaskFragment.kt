@@ -1,60 +1,127 @@
 package com.example.taskmanagementapp.fragments
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.EditText
+import android.widget.Toast
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.findNavController
+import com.example.taskmanagementapp.HomeActivity
 import com.example.taskmanagementapp.R
+import com.example.taskmanagementapp.databinding.FragmentAddTaskBinding
+import com.example.taskmanagementapp.model.Task
+import com.example.taskmanagementapp.viewmodel.TaskViewModel
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class AddTaskFragment : Fragment(R.layout.fragment_add_task), MenuProvider {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AddTaskFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class AddTaskFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var addTaskBinding: FragmentAddTaskBinding? = null
+    private val binding get() = addTaskBinding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private lateinit var tasksViewModel: TaskViewModel
+    private lateinit var addTaskView: View
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_task, container, false)
+        addTaskBinding = FragmentAddTaskBinding.inflate(inflater, container, false)
+
+        // Set the windowSoftInputMode attribute for the hosting Activity
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AddTaskFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AddTaskFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+        tasksViewModel = (activity as HomeActivity).taskViewModel
+        addTaskView = view
+
+        binding.taskDeadline.setOnClickListener {
+            showDateTimePicker()
+        }
+
+        binding.btnAddTask.setOnClickListener {
+            saveTask(addTaskView)
+        }
+    }
+
+    private fun saveTask(view: View){
+        val taskTitle = binding.taskTitle.text.toString().trim()
+        val taskDesc = binding.taskDescription.text.toString().trim()
+        val deadline = binding.taskDeadline.text.toString().trim()
+
+        if(taskTitle.isNotEmpty()){
+            val task = Task(0, taskTitle, taskDesc, deadline)
+            tasksViewModel.addTask(task)
+
+            Toast.makeText(addTaskView.context, "Task Saved", Toast.LENGTH_SHORT).show()
+            view.findNavController().popBackStack(R.id.homeFragment,false)
+        }else{
+            Toast.makeText(addTaskView.context, "Please enter task title", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+
+
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menu.clear()
+        menuInflater.inflate(R.menu.add_task_menu, menu)
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        return false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        addTaskBinding = null
+    }
+
+    private fun showDateTimePicker() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(requireContext(),
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                showTimePicker(year, monthOfYear, dayOfMonth)
+            }, year, month, day)
+        datePickerDialog.show()
+    }
+
+    private fun showTimePicker(year: Int, month: Int, day: Int) {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+
+        val timePickerDialog = TimePickerDialog(requireContext(),
+            TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                val selectedDateTime = Calendar.getInstance()
+                selectedDateTime.set(year, month, day, hourOfDay, minute)
+                val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+                val formattedDateTime = sdf.format(selectedDateTime.time)
+                binding.taskDeadline.setText(formattedDateTime)
+            }, hour, minute, false)
+        timePickerDialog.show()
     }
 }

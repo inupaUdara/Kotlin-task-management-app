@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/editNoteFragment"
-        android:name="com.example.taskmanagementapp.fragments.EditNoteFragment"
+        android:name="com.example.taskmanagementapp.fragments.EditTaskFragment"
         android:label="EditNoteFragment" >
         <action
             android:id="@+id/action_editNoteFragment_to_homeFragment"
