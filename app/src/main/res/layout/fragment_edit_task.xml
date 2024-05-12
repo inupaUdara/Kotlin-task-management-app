@@ -117,6 +117,33 @@
                         android:clickable="true"
                         android:drawableEnd="@drawable/baseline_calendar_month_24"/>
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/textLabel"
+                        android:text="@string/update_status_of_the_task"/>
+
+                    <Spinner
+                        android:id="@+id/updateTaskStatusSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="20dp"
+                        android:padding="10dp"
+                        android:textSize="16sp"
+                        app:layout_constraintTop_toBottomOf="@id/updateTaskDeadline"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:entries="@array/status_options" />
+
+
+                </LinearLayout>
+
 
 
 

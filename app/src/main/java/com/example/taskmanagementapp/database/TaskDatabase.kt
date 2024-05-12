@@ -28,7 +28,7 @@ abstract class TaskDatabase: RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 TaskDatabase::class.java,
-                "task_db"
+                "task_database"
             ).build()
     }
 

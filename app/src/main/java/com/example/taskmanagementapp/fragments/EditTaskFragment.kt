@@ -11,6 +11,9 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -59,6 +62,26 @@ class EditTaskFragment : Fragment(R.layout.fragment_edit_task), MenuProvider {
         binding.updateTaskDescription.setText(currentTask.taskDesc)
         binding.updateTaskDeadline.setText(currentTask.deadline)
 
+        // Setup Spinner for status selection
+        val statusSpinner: Spinner = view.findViewById(R.id.updateTaskStatusSpinner)
+        val statusOptions = resources.getStringArray(R.array.status_options)
+
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, statusOptions)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        statusSpinner.adapter = adapter
+
+        // Handle status update when a status is selected
+        statusSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedStatus = statusOptions[position]
+                // You can use selectedStatus as the status value
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+        }
+
         binding.updateTaskDeadline.setOnClickListener {
             showDateTimePicker()
         }
@@ -68,8 +91,12 @@ class EditTaskFragment : Fragment(R.layout.fragment_edit_task), MenuProvider {
             val taskDesc = binding.updateTaskDescription.text.toString().trim()
             val deadline = binding.updateTaskDeadline.text.toString().trim()
 
+            // Retrieve selected status from the Spinner
+            val selectedStatus = statusOptions[statusSpinner.selectedItemPosition]
+
+
             if(taskTitle.isNotEmpty()){
-                val task = Task(currentTask.id, taskTitle, taskDesc, deadline)
+                val task = Task(currentTask.id, taskTitle, taskDesc, deadline, selectedStatus)
                 tasksViewModel.updateTask(task)
                 view.findNavController().popBackStack(R.id.homeFragment,false)
             }else{

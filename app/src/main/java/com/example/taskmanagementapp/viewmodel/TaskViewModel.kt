@@ -3,7 +3,6 @@ package com.example.taskmanagementapp.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.Query
 import com.example.taskmanagementapp.model.Task
 import com.example.taskmanagementapp.repository.TaskRepository
 import kotlinx.coroutines.launch
@@ -26,6 +25,12 @@ class TaskViewModel(app: Application, private val taskRepository: TaskRepository
         }
 
     fun getALlTasks() = taskRepository.getAllTasks()
+
+    fun getTodoTasks() = taskRepository.getTodoTasks()
+
+    fun getProgressTasks() = taskRepository.getProgressTasks()
+
+    fun getCompleteTasks() = taskRepository.getCompleteTasks()
 
     fun searchTask(query: String?) =
         taskRepository.searchTask(query)

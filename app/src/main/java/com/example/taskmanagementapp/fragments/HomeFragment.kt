@@ -21,7 +21,7 @@ import com.example.taskmanagementapp.databinding.FragmentHomeBinding
 import com.example.taskmanagementapp.model.Task
 import com.example.taskmanagementapp.viewmodel.TaskViewModel
 
-class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener, MenuProvider {
+class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
 
     private var homeBinding: FragmentHomeBinding? = null
     private val binding get() = homeBinding!!
@@ -44,61 +44,29 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        taskViewModel = (activity as HomeActivity).taskViewModel
-        setupHomeRecycleView()
+        binding.todo.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToTodoFragment()
+            it.findNavController().navigate(action)
+        }
+
+        binding.progress.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToProgressFragment()
+            it.findNavController().navigate(action)
+        }
+        binding.complete.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_completeFragment)
+        }
+
+//        taskViewModel = (activity as HomeActivity).taskViewModel
 
         binding.addTaskFab.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_addTaskFragment)
         }
 
+
+
     }
 
-    private  fun updateUI(task: List<Task>?){
-        if (task != null){
-            if (task.isNotEmpty()){
-                binding.emptyTaskImage.visibility = View.GONE
-                binding.homeRecyclerView.visibility = View.VISIBLE
-            }else{
-                binding.emptyTaskImage.visibility = View.VISIBLE
-                binding.homeRecyclerView.visibility = View.GONE
-            }
-        }
-    }
-
-    private fun setupHomeRecycleView(){
-        taskAdapter = TaskAdapter()
-        binding.homeRecyclerView.apply {
-            layoutManager = StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL)
-            setHasFixedSize(true)
-            adapter = taskAdapter
-        }
-
-        activity?.let {
-            taskViewModel.getALlTasks().observe(viewLifecycleOwner){ task ->
-                taskAdapter.differ.submitList(task)
-                updateUI(task)
-            }
-        }
-    }
-
-    private  fun searchTask(query: String?){
-        val searchQuery = "%$query"
-
-        taskViewModel.searchTask(searchQuery).observe(this) {list ->
-            taskAdapter.differ.submitList(list)
-        }
-    }
-
-    override fun onQueryTextSubmit(query: String?): Boolean {
-        return false
-    }
-
-    override fun onQueryTextChange(newText: String?): Boolean {
-        if(newText != null){
-            searchTask(newText)
-        }
-        return true
-    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -108,14 +76,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menu.clear()
         menuInflater.inflate(R.menu.home_menu, menu)
-
-        val menuSearch = menu.findItem(R.id.searchMenu).actionView as SearchView
-        menuSearch.isSubmitButtonEnabled = false
-        menuSearch.setOnQueryTextListener(this)
-
-
     }
-
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return false
     }

@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanagementapp.databinding.TaskLayoutBinding
+import com.example.taskmanagementapp.fragments.CompleteFragmentDirections
 import com.example.taskmanagementapp.fragments.HomeFragmentDirections
+import com.example.taskmanagementapp.fragments.ProgressFragmentDirections
+import com.example.taskmanagementapp.fragments.TodoFragmentDirections
 import com.example.taskmanagementapp.model.Task
 
 class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
@@ -42,10 +45,22 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
         holder.itemBinding.taskTitle.text = currentTask.taskTitle
         holder.itemBinding.taskDescription.text = currentTask.taskDesc
         holder.itemBinding.taskDeadline.text = currentTask.deadline
+        holder.itemBinding.status.text = currentTask.status
 
          holder.itemView.setOnClickListener {
-             val direction = HomeFragmentDirections.actionHomeFragmentToEditNoteFragment(currentTask)
-             it.findNavController().navigate(direction)
+             if (currentTask.status == "To-Do") {
+                 val direction =
+                     TodoFragmentDirections.actionTodoFragmentToEditNoteFragment(currentTask)
+                 it.findNavController().navigate(direction)
+             }else if (currentTask.status == "In-Progress") {
+                 val direction =
+                     ProgressFragmentDirections.actionProgressFragmentToEditNoteFragment(currentTask)
+                 it.findNavController().navigate(direction)
+             }else{
+                 val direction =
+                     CompleteFragmentDirections.actionCompleteFragmentToEditNoteFragment(currentTask)
+                 it.findNavController().navigate(direction)
+             }
          }
     }
 }

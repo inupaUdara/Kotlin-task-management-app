@@ -44,7 +44,17 @@
                 android:id="@+id/taskDeadline"
                 android:layout_marginTop="8dp"
                 android:maxHeight="170dp"
-                android:text="Description"
+                android:text="Deadline"
+                android:textSize="14sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/darkBlue"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/status"
+                android:layout_marginTop="8dp"
+                android:maxHeight="170dp"
+                android:text="Status"
                 android:textSize="14sp"
                 android:fontFamily="@font/montserrat_regular"
                 android:textColor="@color/darkBlue"/>
