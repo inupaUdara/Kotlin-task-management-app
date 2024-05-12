@@ -10,6 +10,19 @@
         android:background="@color/primary"
         tools:context=".HomeFragment">
 
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/manage_your_work_here"
+            android:textColor="@color/darkBlue"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addTaskFab"
             android:layout_width="wrap_content"
@@ -24,41 +37,91 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/baseline_add_24" />
 
-        <Button
-            android:id="@+id/todo"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/to_do"
+            android:layout_margin="16dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.427"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.251" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/in_progress"
-            app:layout_constraintBottom_toTopOf="@+id/complete"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/todo"
-            app:layout_constraintVertical_bias="0.331" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="30dp"
+                android:background="@color/lightBlue"
+                android:elevation="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-        <Button
-            android:id="@+id/complete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/completed"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.762" />
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="25dp"
+                    android:src="@drawable/to_do_list" />
 
+                <Button
+                    android:id="@+id/todo"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/to_do" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="30dp"
+                android:background="@color/lightBlue"
+                android:elevation="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="25dp"
+                    android:src="@drawable/work_in_progress" />
+
+                <Button
+                    android:id="@+id/progress"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_progress" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="30dp"
+                android:background="@color/lightBlue"
+                android:elevation="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="25dp"
+                    android:src="@drawable/completed" />
+
+                <Button
+                    android:id="@+id/complete"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/completed" />
+            </LinearLayout>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

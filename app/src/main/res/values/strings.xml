@@ -18,6 +18,7 @@
     <string name="to_do">To Do</string>
     <string name="in_progress">In-Progress</string>
     <string name="completed">Completed</string>
+    <string name="manage_your_work_here">Manage Your Work Here..</string>
     <string-array name="status_options">
         <item>In-Progress</item>
         <item>Completed</item>
