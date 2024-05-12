@@ -62,23 +62,33 @@ class EditTaskFragment : Fragment(R.layout.fragment_edit_task), MenuProvider {
         binding.updateTaskDescription.setText(currentTask.taskDesc)
         binding.updateTaskDeadline.setText(currentTask.deadline)
 
+        val currentStatus = currentTask.status
+
         // Setup Spinner for status selection
         val statusSpinner: Spinner = view.findViewById(R.id.updateTaskStatusSpinner)
         val statusOptions = resources.getStringArray(R.array.status_options)
+
+
 
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, statusOptions)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         statusSpinner.adapter = adapter
 
+        val position = statusOptions.indexOf(currentStatus)
+        statusSpinner.setSelection(position)
+
         // Handle status update when a status is selected
         statusSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val selectedStatus = statusOptions[position]
-                // You can use selectedStatus as the status value
+                if (position != 0) {
+                    val selectedStatus = statusOptions[position]
+                    // Update the task status only if a status is selected
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Do nothing
+
             }
         }
 
@@ -92,8 +102,11 @@ class EditTaskFragment : Fragment(R.layout.fragment_edit_task), MenuProvider {
             val deadline = binding.updateTaskDeadline.text.toString().trim()
 
             // Retrieve selected status from the Spinner
-            val selectedStatus = statusOptions[statusSpinner.selectedItemPosition]
+            var selectedStatus = statusOptions[statusSpinner.selectedItemPosition]
 
+//            if (selectedStatus == "Select the status"){
+//                selectedStatus = currentStatus
+//            }
 
             if(taskTitle.isNotEmpty()){
                 val task = Task(currentTask.id, taskTitle, taskDesc, deadline, selectedStatus)
