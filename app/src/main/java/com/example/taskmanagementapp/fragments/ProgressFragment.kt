@@ -82,7 +82,8 @@ class ProgressFragment : Fragment(R.layout.fragment_progress), SearchView.OnQuer
         val searchQuery = "%$query"
 
         taskViewModel.searchTask(searchQuery).observe(this) {list ->
-            taskAdapter.differ.submitList(list)
+            val progressTasks = list.filter { it.status == "In-Progress" }
+            taskAdapter.differ.submitList(progressTasks)
         }
     }
 

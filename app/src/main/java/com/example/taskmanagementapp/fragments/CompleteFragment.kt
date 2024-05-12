@@ -83,7 +83,8 @@ class CompleteFragment : Fragment(R.layout.fragment_complete), SearchView.OnQuer
         val searchQuery = "%$query"
 
         taskViewModel.searchTask(searchQuery).observe(this) {list ->
-            taskAdapter.differ.submitList(list)
+            val completeTasks = list.filter { it.status == "Completed" }
+            taskAdapter.differ.submitList(completeTasks)
         }
     }
 

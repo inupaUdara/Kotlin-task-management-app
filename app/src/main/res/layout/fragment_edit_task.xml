@@ -159,7 +159,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/blue"
+            android:backgroundTint="@color/darkBlue"
             android:fontFamily="@font/montserrat_bold"
             android:padding="10dp"
             android:text="@string/update"

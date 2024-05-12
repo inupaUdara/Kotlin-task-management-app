@@ -83,7 +83,8 @@ class TodoFragment : Fragment(R.layout.fragment_todo), SearchView.OnQueryTextLis
         val searchQuery = "%$query"
 
         taskViewModel.searchTask(searchQuery).observe(this) {list ->
-            taskAdapter.differ.submitList(list)
+            val todoTasks = list.filter { it.status == "To-Do" }
+            taskAdapter.differ.submitList(todoTasks)
         }
     }
 
