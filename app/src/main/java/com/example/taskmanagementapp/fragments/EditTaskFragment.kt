@@ -104,9 +104,7 @@ class EditTaskFragment : Fragment(R.layout.fragment_edit_task), MenuProvider {
             // Retrieve selected status from the Spinner
             var selectedStatus = statusOptions[statusSpinner.selectedItemPosition]
 
-//            if (selectedStatus == "Select the status"){
-//                selectedStatus = currentStatus
-//            }
+
 
             if(taskTitle.isNotEmpty()){
                 val task = Task(currentTask.id, taskTitle, taskDesc, deadline, selectedStatus)
